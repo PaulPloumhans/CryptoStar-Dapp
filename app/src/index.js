@@ -45,7 +45,10 @@ const App = {
     const id = document.getElementById("lookid").value;
     const starName = await lookUptokenIdToStarInfo(id).call({from: this.account});
     console.log(starName);
-    App.setStatus("Star with ID " + id + " has name: " + starName + ".");
+    if( starName==="" )
+      App.setStatus("No star with ID " + id);
+    else
+      App.setStatus("Star with ID " + id + " has name: " + starName + ".");
   }
 
 };
