@@ -34,7 +34,7 @@ it('lets user1 get the funds after the sale', async() => {
     let balance = web3.utils.toWei(".05", "ether");
     await instance.createStar('awesome star', starId, {from: user1});
     await instance.putStarUpForSale(starId, starPrice, {from: user1});
-    await instance.approve(user2, starId, {from: user1});
+    //await instance.approve(user2, starId, {from: user1});
     let balanceOfUser1BeforeTransaction = await web3.eth.getBalance(user1);
     await instance.buyStar(starId, {from: user2, value: balance});
     let balanceOfUser1AfterTransaction = await web3.eth.getBalance(user1);
@@ -52,7 +52,7 @@ it('lets user2 buy a star, if it is put up for sale', async() => {
     let balance = web3.utils.toWei(".05", "ether");
     await instance.createStar('awesome star', starId, {from: user1});
     await instance.putStarUpForSale(starId, starPrice, {from: user1});
-    await instance.approve(user2, starId, {from: user1});
+    //await instance.approve(user2, starId, {from: user1});
     //let balanceOfUser1BeforeTransaction = await web3.eth.getBalance(user2);
     await instance.buyStar(starId, {from: user2, value: balance});
     assert.equal(await instance.ownerOf.call(starId), user2);
@@ -67,7 +67,7 @@ it('lets user2 buy a star and decreases its balance in ether', async() => {
     let balance = web3.utils.toWei(".05", "ether");
     await instance.createStar('awesome star', starId, {from: user1});
     await instance.putStarUpForSale(starId, starPrice, {from: user1});
-    await instance.approve(user2, starId, {from: user1});
+    //await instance.approve(user2, starId, {from: user1});
     //let balanceOfUser1BeforeTransaction = await web3.eth.getBalance(user2);
     const balanceOfUser2BeforeTransaction = await web3.eth.getBalance(user2);
     await instance.buyStar(starId, {from: user2, value: balance, gasPrice:0});    
@@ -91,7 +91,6 @@ it('can add the star name and star symbol properly', async() => {
 });
 
 it('lets 2 users exchange stars', async() => {
-    
     // 1. create 2 Stars with different tokenId
     let tokenId0 = 7;
     let tokenId1 = 8;
@@ -101,7 +100,7 @@ it('lets 2 users exchange stars', async() => {
     await instance.createStar('Star 0', tokenId0, {from: user0}) ;
     await instance.createStar('Star 1', tokenId1, {from: user1}) ;
     // 2. Call the exchangeStars functions implemented in the Smart Contract
-    await instance.approve(user0, tokenId1, {from: user1});
+    //await instance.approve(user0, tokenId1, {from: user1});
     await instance.exchangeStars(tokenId0, tokenId1, {from: user0}) ;
     // 3. Verify that the owners changed
     assert.equal(await instance.ownerOf.call(tokenId0), user1);

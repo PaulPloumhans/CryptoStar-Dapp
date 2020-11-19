@@ -26,7 +26,7 @@
 //const HDWalletProvider = require('@truffle/hdwallet-provider'); // from initial truffle-config file
 
 // infura
-const HDWalletProvider = require('truffle-hdwallet-provider'); // from udacity file
+const HDWalletProvider = require('truffle-hdwallet-provider');
 const infuraKey = "1513bf39502d4f39b26dde0541e7d281";
 // metamask
 const fs = require('fs');
@@ -57,19 +57,19 @@ module.exports = {
     // },
     
     develop: {
-      host: "127.0.0.1",     // Localhost (default: none)
+      host: "127.0.0.1",       // Localhost (default: none)
       port: 9545,
-      network_id: "*",       // Any network (default: none)
+      network_id: "*",         // Any network (default: none)
       //gas: 10000000          // round number, easier for debugging
     },
     rinkeby: {
       provider: () => new HDWalletProvider(mnemonic, `https://rinkeby.infura.io/v3/${infuraKey}`),
-      network_id: 4,       // Rinkeby's id
-      gas: 5500000,        // Rinkeby has a lower block limit than mainnet
+      network_id: 4,           // Rinkeby's id
+      gas: 5500000,            // Rinkeby has a lower block limit than mainnet
       gasprice: 1000000000
-      // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-      // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-      // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+      // confirmations: 2,     // # of confs to wait between deployments. (default: 0)
+      // timeoutBlocks: 200,   // # of blocks before a deployment times out  (minimum/default: 50)
+      // skipDryRun: true      // Skip dry run before migrations? (default: false for public nets )
     }
     // Another network with more advanced options...
     // advanced: {

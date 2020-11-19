@@ -46,7 +46,7 @@ contract StarNotary is ERC721 {
         uint256 starCost = starsForSale[_tokenId];
         address ownerAddress = ownerOf(_tokenId);
         require(msg.value > starCost, "You need to have enough Ether");
-        transferFrom(ownerAddress, msg.sender, _tokenId); // We can't use _addTokenTo or_removeTokenFrom functions, now we have to use _transferFrom
+        _transfer(ownerAddress, msg.sender, _tokenId); // _transferFrom has been renamed _transfer in this version of openzeppelin
         address payable ownerAddressPayable = _make_payable(ownerAddress); // We need to make this conversion to be able to use transfer() function to transfer ethers
         ownerAddressPayable.transfer(starCost);
         if(msg.value > starCost) {
@@ -77,8 +77,8 @@ contract StarNotary is ERC721 {
         if(starsForSale[_tokenId2] > 0){
             starsForSale[_tokenId2] = 0 ;
         }
-        transferFrom(ownerAddress1, ownerAddress2, _tokenId1);
-        transferFrom(ownerAddress2, ownerAddress1, _tokenId2);
+        _transfer(ownerAddress1, ownerAddress2, _tokenId1);
+        _transfer(ownerAddress2, ownerAddress1, _tokenId2);
     }
 
     // Implement Task 1 Transfer Stars
@@ -91,7 +91,7 @@ contract StarNotary is ERC721 {
         if(starsForSale[_tokenId] > 0){
             starsForSale[_tokenId] = 0 ;
         }
-        transferFrom(ownerAddress, _to1, _tokenId);
+        _transfer(ownerAddress, _to1, _tokenId);
     }
 
 }
